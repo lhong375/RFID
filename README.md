@@ -13,11 +13,12 @@ Sketch > Include Library > Add .ZIP Library > load rfid-master.zip
 8. in Arduino, click 'verify', after it's done without error, click 'upload', it will upload the code to board
 
 9. in the Serial Monitor, you will see a message "Garage is OPEN", yay, we are in business !!! 
-9.1 Tap the fob to sensor, it will pick up its NUID, just like when a car drive into garage
+9.1. Tap the fob to sensor, it will pick up its NUID, just like when a car drive into garage
 the 7Segment will display '1'
-9.2 Tap the fob again, it will pick up and recognize its NUID, just like a car leaving garage
+9.2. Tap the fob again, it will pick up and recognize its NUID, just like a car leaving garage
 the 7Segment will display '-1'
 
+<p>Note</p>
 since we only have one fob, there is only one car, code logic for other cars hasn't been completly implemented yet.
 
 #OLD REAMDE 
