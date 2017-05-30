@@ -21,6 +21,13 @@ the 7Segment will display '-1'
 # Note
 we only have one fob, there is only one car, code logic for other cars hasn't been completly implemented yet.
 
+# Useful links
+* https://www.arduino.cc/
+* https://www.amazon.co.uk/Kuman-Various-Sensors-Arduino-Compatible/dp/B014L119VC
+* https://mega.nz/#F!ecMShYBL!iBBvfjE5h3DMDsGEfUYISw
+* https://javierpereda.wordpress.com/2014/06/19/rfidarduinoled/
+
+
 # OLD REAMDE 
 RFID
 Download the librarby. Then follow the illustrations given in the tutorial for Security System using RFID (hackster.io/Aritro)
