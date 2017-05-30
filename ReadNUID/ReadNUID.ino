@@ -56,11 +56,336 @@ void setup() {
     key.keyByte[i] = 0xFF;
   }
 
+  // * LED setup pins
+    pinMode(2, OUTPUT);   
+    pinMode(3, OUTPUT);
+    pinMode(4, OUTPUT);
+    pinMode(5, OUTPUT);
+    pinMode(6, OUTPUT);
+    pinMode(7, OUTPUT);
+    pinMode(8, OUTPUT);
+
   //Serial.println(F("This code scan the MIFARE Classsic NUID."));
   //Serial.print(F("Using the following key:"));
   //printHex(key.keyByte, MFRC522::MF_KEY_SIZE);
   Serial.println("Garage is OPEN");
 }
+
+void clr() {
+  digitalWrite(2, LOW);
+  digitalWrite(3, LOW);
+  digitalWrite(4, LOW);
+  digitalWrite(5, LOW);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, LOW); 
+}
+void segment(char number) {
+  const int m = 2; //Middle
+  const int ol = 3; //top left
+  const int o = 4; //top
+  const int lor = 5; //top right
+  const int ul = 6; //down left
+  const int u = 7; //down
+  const int ur = 8; //down right 
+  //Begin switch
+  switch (number) {
+    
+    case '2':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(u, HIGH);
+    break;
+    
+    case '3':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ur, HIGH);
+    break;
+    
+    case '1':
+    clr();
+    digitalWrite(lor, HIGH);
+    digitalWrite(ur, HIGH);
+    break;
+    
+    case '4':
+    clr();
+    digitalWrite(ol, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ur, HIGH);
+    break;
+    
+    case '5':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(u, HIGH);
+    break;
+    
+    case '6':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ur, HIGH);
+    break;
+    
+    case '7':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ur, HIGH);
+    break;
+    
+    case '8':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(u, HIGH);
+    break;
+    
+    case '9':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(u, HIGH);
+    break;
+    
+    case '0':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(ul, HIGH);
+    break;
+  
+    case 'a':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(ul, HIGH);
+    break;  
+    
+    default:
+    clr();
+    break;
+    
+    case 'b':
+    clr();
+    digitalWrite(u, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ol, HIGH);
+    break;  
+    
+    case 'c':
+    clr();
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(o, HIGH);
+    break;
+    
+    case 'd':
+    clr();
+    digitalWrite(u, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(lor, HIGH);
+    break;
+    
+    case 'e':
+    clr();
+    digitalWrite(u, HIGH);
+    digitalWrite(o, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ol, HIGH);
+    break;
+    
+    case 'f':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    break;
+    
+    case 'g':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    break;
+    
+    case 'h':
+    clr();
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(m, HIGH);
+    break;
+    
+    case 'i':
+    clr();
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    break;
+    
+    case 'j':
+    clr();
+    digitalWrite(lor, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(ul, HIGH);
+    break;
+    
+    case 'k':
+    clr();
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(m, HIGH);
+    break;
+    
+    case 'l':
+    clr();
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(u, HIGH);
+    break;
+    
+    case 'm':
+    clr();
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(o, HIGH);
+    break;
+    
+    case 'n':
+    clr();
+    digitalWrite(ur, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(m, HIGH);
+    break;
+    
+    case 'o':
+    clr();
+    digitalWrite(m, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ur, HIGH);
+    break;
+    
+    case 'p':
+    clr();
+    digitalWrite(m, HIGH);
+    digitalWrite(o, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ul, HIGH);
+    break;
+    
+    case 'q':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ur, HIGH);
+    break;
+    
+    case 'r':
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(ul, HIGH);
+    break;
+    
+    case 's':
+    segment('5');
+    break;
+    
+    case 't':
+    segment('7');
+    break;
+    
+    case 'u':
+    clr();
+    digitalWrite(u, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(lor, HIGH);
+    break;
+    
+    case 'v':
+    clr();
+    digitalWrite(u, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ur, HIGH);
+    break;
+    
+    case 'w':
+    clr();
+    digitalWrite(u, HIGH);
+    digitalWrite(m, HIGH);
+    digitalWrite(ul, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(lor, HIGH);
+    break;
+    
+    case 'x':
+    segment('h');
+    break;
+    
+    case 'y':
+    clr();
+    digitalWrite(u, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(m, HIGH);
+    break;
+    
+    case 'z':
+    segment('2');
+    break;
+  }
+}
+
 
 void loop() {
 
@@ -114,6 +439,21 @@ void loop() {
     for(x=0; x<4; x++) {
       car1[x] = 0xFF;
     }
+    segment('1');
+    delay(500);
+    clr();
+    /*segment('L');
+    delay(500);
+    clr();
+    segment('E');
+    delay(500);
+    clr();
+    segment('F');
+    delay(500);
+    clr();
+    segment('T');
+    clr();
+    */
   } else if(isCar2) {
     Serial.println("Car2 leaving");
     printHex(car2, 4);
@@ -136,6 +476,18 @@ void loop() {
       for(x=0; x<4; x++) {
         car1[x] = rfid.uid.uidByte[x];
       }
+      /*segment('c');
+      delay(500);
+      clr();
+      segment('a');
+      delay(500);
+      clr();
+      segment('r');
+      delay(500);
+      clr();*/
+      segment('1');
+      delay(500);
+      clr();
     } else if(!spot2) {
       Serial.println(F("A new car is going to take spot2"));
       printHex(rfid.uid.uidByte, rfid.uid.size);
@@ -143,6 +495,14 @@ void loop() {
       for(x=0; x<4; x++) {
         car2[x] = rfid.uid.uidByte[x];
       }
+      /*segment('c');
+      delay(500);
+      segment('a');
+      delay(500);
+      segment('r');
+      delay(500);
+      segment('2');
+      delay(500);*/
     } else if(!spot3) {
       Serial.println(F("A new car is going to take spot3"));
       printHex(rfid.uid.uidByte, rfid.uid.size);
@@ -150,8 +510,24 @@ void loop() {
       for(x=0; x<4; x++) {
         car3[x] = rfid.uid.uidByte[x];
       }
+      /*segment('c');
+      delay(500);
+      segment('a');
+      delay(500);
+      segment('r');
+      delay(500);
+      segment('3');
+      delay(500);*/
     } else {
       Serial.println(F("Garage Full, come back later"));
+      /*segment('f');
+      delay(500);
+      segment('u');
+      delay(500);
+      segment('l');
+      delay(500);
+      segment('l');
+      delay(500);*/
     }
   }
 
