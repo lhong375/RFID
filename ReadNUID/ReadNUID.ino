@@ -46,6 +46,7 @@ byte car3[4];
 boolean spot1 = false;
 boolean spot2 = false;
 boolean spot3 = false;
+int count = 0;
 
 void setup() { 
   Serial.begin(9600);
@@ -65,10 +66,7 @@ void setup() {
     pinMode(7, OUTPUT);
     pinMode(8, OUTPUT);
 
-  //Serial.println(F("This code scan the MIFARE Classsic NUID."));
-  //Serial.print(F("Using the following key:"));
-  //printHex(key.keyByte, MFRC522::MF_KEY_SIZE);
-  Serial.println("Garage is OPEN");
+    Serial.println("Garage is OPEN");
 }
 
 void clr() {
@@ -80,7 +78,7 @@ void clr() {
   digitalWrite(7, LOW);
   digitalWrite(8, LOW); 
 }
-void segment(char number) {
+void segment(int number) {
   const int m = 2; //Middle
   const int ol = 3; //top left
   const int o = 4; //top
@@ -90,8 +88,15 @@ void segment(char number) {
   const int ur = 8; //down right 
   //Begin switch
   switch (number) {
+
+    case (-1):
+    clr();
+    digitalWrite(m, HIGH);
+    delay(500);
+    segment(1);
+    break;
     
-    case '2':
+    case 2:
     clr();
     digitalWrite(o, HIGH);
     digitalWrite(lor, HIGH);
@@ -100,7 +105,17 @@ void segment(char number) {
     digitalWrite(u, HIGH);
     break;
     
-    case '3':
+    case 0:
+    clr();
+    digitalWrite(o, HIGH);
+    digitalWrite(lor, HIGH);
+    digitalWrite(u, HIGH);
+    digitalWrite(ol, HIGH);
+    digitalWrite(ur, HIGH);
+    digitalWrite(ul, HIGH);
+    break;
+    
+    case 3:
     clr();
     digitalWrite(o, HIGH);
     digitalWrite(m, HIGH);
@@ -109,13 +124,13 @@ void segment(char number) {
     digitalWrite(ur, HIGH);
     break;
     
-    case '1':
+    case 1:
     clr();
     digitalWrite(lor, HIGH);
     digitalWrite(ur, HIGH);
     break;
     
-    case '4':
+    case 4:
     clr();
     digitalWrite(ol, HIGH);
     digitalWrite(m, HIGH);
@@ -123,7 +138,7 @@ void segment(char number) {
     digitalWrite(ur, HIGH);
     break;
     
-    case '5':
+    case 5:
     clr();
     digitalWrite(o, HIGH);
     digitalWrite(ol, HIGH);
@@ -132,7 +147,7 @@ void segment(char number) {
     digitalWrite(u, HIGH);
     break;
     
-    case '6':
+  /*  case '6':
     clr();
     digitalWrite(o, HIGH);
     digitalWrite(m, HIGH);
@@ -170,15 +185,7 @@ void segment(char number) {
     digitalWrite(u, HIGH);
     break;
     
-    case '0':
-    clr();
-    digitalWrite(o, HIGH);
-    digitalWrite(lor, HIGH);
-    digitalWrite(u, HIGH);
-    digitalWrite(ol, HIGH);
-    digitalWrite(ur, HIGH);
-    digitalWrite(ul, HIGH);
-    break;
+    
   
     case 'a':
     clr();
@@ -383,12 +390,17 @@ void segment(char number) {
     case 'z':
     segment('2');
     break;
+  */
   }
 }
 
 
 void loop() {
-
+  //clr();
+  //segment(count);
+  //delay(2000);
+  //clr();
+  
   // Look for new cards
   if ( ! rfid.PICC_IsNewCardPresent())
     return;
@@ -433,36 +445,28 @@ void loop() {
   }
 
   if(isCar1) {
-    Serial.println("Car1 leaving");
+    count --;
+    Serial.println("Car1 leaving. car count = "+String(count));
     printHex(car1, 4);
     spot1 = false;
     for(x=0; x<4; x++) {
       car1[x] = 0xFF;
     }
-    segment('1');
-    delay(500);
     clr();
-    /*segment('L');
-    delay(500);
+    segment(-1);
+    delay(1000);
     clr();
-    segment('E');
-    delay(500);
-    clr();
-    segment('F');
-    delay(500);
-    clr();
-    segment('T');
-    clr();
-    */
   } else if(isCar2) {
-    Serial.println("Car2 leaving");
+    count --;
+    Serial.println("Car2 leaving. car count = "+String(count));
     printHex(car2, 4);
     spot2 = false;
     for(x=0; x<4; x++) {
       car2[x] = 0xFF;
     }
   } else if(isCar3) {
-    Serial.println("Car3 leaving");
+    count --;
+    Serial.println("Car3 leaving. car count = "+String(count));
     printHex(car3, 4);
     spot3 = false;
     for(x=0; x<4; x++) {
@@ -470,98 +474,42 @@ void loop() {
     }
   } else {
     if(!spot1) {
-      Serial.println(F("A new car is going to take spot1"));
+      count ++;
+      Serial.println("A new car is going to take spot1. car count = "+String(count));
       printHex(rfid.uid.uidByte, rfid.uid.size);
       spot1 = true;
       for(x=0; x<4; x++) {
         car1[x] = rfid.uid.uidByte[x];
       }
-      /*segment('c');
-      delay(500);
       clr();
-      segment('a');
-      delay(500);
-      clr();
-      segment('r');
-      delay(500);
-      clr();*/
-      segment('1');
-      delay(500);
+      segment(1);
+      delay(1000);
       clr();
     } else if(!spot2) {
-      Serial.println(F("A new car is going to take spot2"));
+      count ++;
+      Serial.println("A new car is going to take spot2. car count = "+String(count));
       printHex(rfid.uid.uidByte, rfid.uid.size);
       spot2 = true;
       for(x=0; x<4; x++) {
         car2[x] = rfid.uid.uidByte[x];
       }
-      /*segment('c');
-      delay(500);
-      segment('a');
-      delay(500);
-      segment('r');
-      delay(500);
-      segment('2');
-      delay(500);*/
     } else if(!spot3) {
-      Serial.println(F("A new car is going to take spot3"));
+      count ++;
+      Serial.println("A new car is going to take spot3. car count = "+String(count));
       printHex(rfid.uid.uidByte, rfid.uid.size);
       spot3 = true;
       for(x=0; x<4; x++) {
         car3[x] = rfid.uid.uidByte[x];
       }
-      /*segment('c');
-      delay(500);
-      segment('a');
-      delay(500);
-      segment('r');
-      delay(500);
-      segment('3');
-      delay(500);*/
     } else {
-      Serial.println(F("Garage Full, come back later"));
-      /*segment('f');
-      delay(500);
-      segment('u');
-      delay(500);
-      segment('l');
-      delay(500);
-      segment('l');
-      delay(500);*/
+      Serial.println("Garage Full, come back later car count = "+String(count));
     }
-  }
 
- 
+        
+  }
 
   
-  /*
-  if (rfid.uid.uidByte[0] != nuidPICC[0] || 
-    rfid.uid.uidByte[1] != nuidPICC[1] || 
-    rfid.uid.uidByte[2] != nuidPICC[2] || 
-    rfid.uid.uidByte[3] != nuidPICC[3] ) {
-    Serial.println(F("A new card has been detected."));
-    
-
-    // Store NUID into nuidPICC array
-    for (byte i = 0; i < 4; i++) {
-      nuidPICC[i] = rfid.uid.uidByte[i];
-    }
-   
-    Serial.println(F("The NUID tag is:"));
-    Serial.print(F("In hex: "));
-    printHex(rfid.uid.uidByte, rfid.uid.size);
-    Serial.println();
-    Serial.print(F("In dec: "));
-    printDec(rfid.uid.uidByte, rfid.uid.size);
-    Serial.println();
-  }
-  else {
-    Serial.println(F("Card read previously."));
-    printHex(rfid.uid.uidByte, rfid.uid.size);
-  }
-  */
   
-
   // Halt PICC
   rfid.PICC_HaltA();
 
